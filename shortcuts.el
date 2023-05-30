@@ -1,14 +1,6 @@
 ;;; shortcuts.el --- Shortcuts -*- lexical-binding:t -*-
 ;;; Commentary:
 ;;; Code:
-(defcustom shortcuts-list nil
-  "List of shortcuts."
-  :type '(repeat
-          (list
-           (string
-            :tag "Command Name")
-           (repeat (string :tag "URL"))))
-  :group 'shortcuts)
 
 (defcustom link-string-replacement-separator "🔑"
   "Separator character for static strings in customized links.
@@ -134,8 +126,8 @@ See `parse-link' for the format of PARSED-LINK."
                 selections)
       (car parsed-link))))
 
-(defun load-shortcuts ()
-  "Setup shortcuts defined in `shortcuts-list'."
+(defun load-shortcuts (shortcut-items)
+  "Setup shortcuts defined in SHORTCUT-ITEMS."
   (interactive)
   (mapc
    (lambda (v)
@@ -172,9 +164,22 @@ See `parse-link' for the format of PARSED-LINK."
                              (message "%s\n%s" "Copied!" links))
                          (mapc 'browse-url-chrome
                                populated-links)))))))
-   shortcuts-list))
+   shortcut-items))
 
-(load-shortcuts)
+(defcustom shortcuts-list nil
+  "List of shortcuts."
+  :type '(repeat
+          (list
+           (string
+            :tag "Command Name")
+           (repeat (string :tag "URL"))))
+  :group 'shortcuts
+  :set (lambda (s v)
+         (set-default-toplevel-value s v)
+         (load-shortcuts v)))
+
+
+(load-shortcuts shortcuts-list)
 
 ;;; End:
 ;;; shortcuts.el ends here
