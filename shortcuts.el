@@ -69,7 +69,7 @@ See `parse-link' for the format of PARSED-LINK."
                             "%s%s: "
                             code
                             (cadr interactive-args))))
-                       (reverse (seq-keep 'cadr parsed-link)))
+                       (reverse (remove nil (mapcar 'cadr parsed-link))))
                "\n"))
 
 (defun enumerate-selections (options)
