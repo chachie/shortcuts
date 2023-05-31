@@ -1,5 +1,10 @@
 ;;; shortcuts.el --- Shortcuts -*- lexical-binding:t -*-
 ;;; Commentary:
+;;;
+;;; Allows setting Emacs commands dynamically to browse URLs or
+;;; files, and optionally prompting the user for parameters to
+;;; fill in those URLs/file paths.
+;;;
 ;;; Code:
 
 (defcustom link-string-replacement-separator "🔑"
@@ -192,6 +197,8 @@ See `parse-link' for the format of PARSED-LINK."
          (load-shortcuts v)))
 
 (load-shortcuts shortcuts-list)
+
+(provide 'shortcuts)
 
 ;;; End:
 ;;; shortcuts.el ends here

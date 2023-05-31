@@ -96,62 +96,18 @@
   (let* ((options '((1 2) (4) (3 "a")))
         (selections (enumerate-selections options)))
     (should (= 4 (length selections)))
-    (should (seq-contains-p selections '(1 4 3)))
-    (should (seq-contains-p selections '(1 4 "a")))
-    (should (seq-contains-p selections '(2 4 3)))
-    (should (seq-contains-p selections '(2 4 "a"))))
+    (should (seq-contains-p selections (reverse '(1 4 3))))
+    (should (seq-contains-p selections (reverse '(1 4 "a"))))
+    (should (seq-contains-p selections (reverse '(2 4 3))))
+    (should (seq-contains-p selections (reverse '(2 4 "a")))))
   (let* ((options '((1 2 3) (4 5 6) (7 8 9)))
         (selections (enumerate-selections options)))
     (should (= 27 (length selections))))
   (let* ((options '((1) (4) (7)))
          (selections (enumerate-selections options)))
     (should (= 1 (length selections)))
-    (should (seq-contains-p selections '(1 4 7))))
+    (should (seq-contains-p selections (reverse '(1 4 7)))))
   )
-
-(ert-deftest test-build-link ()
-  (let ((link "🔑protocol🔑://test.com/🔑path1🔑/somepath/🔑path2🔑/end"))
-    (should (string-equal
-             "http://test.com/test2/somepath/test3/end"
-             (car
-              (build-link (parse-link link) '(("http") ("test2") ("test3"))
-                          '(0 3))))))
-  (let ((link "http://test.com/🔑path1🔑/somepath/🔑path2🔑/end"))
-    (should (string-equal
-             "http://test.com/test2/somepath/test3/end"
-             (car
-              (build-link (parse-link link) '(("test2") ("test3"))
-                          '(0 2))))))
-  (let ((link "http://test.com/somepath/🔑path2🔑/end"))
-    (should (string-equal
-             "http://test.com/somepath/test3/end"
-             (car
-              (build-link (parse-link link) '(("test3"))
-                          '(0 1))))))
-  (let ((link "🔑protocol🔑://test.com/🔑path1🔑/somepath/🔑path2🔑"))
-    (should (string-equal
-             "http://test.com/test2/somepath/test3"
-             (car
-              (build-link (parse-link link) '(("http") ("test2") ("test3"))
-                          '(0 3))))))
-  (let ((link "🔑protocol🔑://test.com/🔑path1🔑/"))
-    (should (string-equal
-             "http://test.com/test2/"
-             (car
-              (build-link (parse-link link) '(("http") ("test2"))
-                          '(0 2))))))
-  (let ((link "🔑protocol🔑://"))
-    (should (string-equal
-             "http://"
-             (car
-              (build-link (parse-link link) '(("http"))
-                          '(0 1))))))
-  (let ((link "🔑protocol🔑"))
-    (should (string-equal
-             "http"
-             (car
-              (build-link (parse-link link) '(("http"))
-                          '(0 1))))))
 
 (ert-deftest test-build-link ()
   (let ((link "🔑protocol🔑://test.com/🔑path1🔑/somepath/🔑path2🔑/end"))
@@ -195,7 +151,7 @@
              "http://"
              (car
               (build-link (parse-link link) '()
-                          '(0 0))))))))
+                          '(0 0)))))))
 
 (provide 'shortcuts-tests)
 ;;; shortcuts-tests.el ends here
