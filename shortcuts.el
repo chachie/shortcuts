@@ -132,7 +132,8 @@ See `parse-link' for the format of PARSED-LINK."
   (mapc
    (lambda (v)
      (let* ((name (intern (car v)))
-            (parsed-links (mapcar 'parse-link (cadr v)))
+            (function (caadr v))
+            (parsed-links (mapcar 'parse-link (cadadr v)))
             (interactive-args (string-trim
                                (string-join (mapcar 'into-interactive-args
                                                     parsed-links)
@@ -162,9 +163,10 @@ See `parse-link' for the format of PARSED-LINK."
                            (let ((links (string-join populated-links "\n")))
                              (kill-new links)
                              (message "%s\n%s" "Copied!" links))
-                         (mapc 'browse-url-chrome
+                         (mapc (quote ,function)
                                populated-links)))))))
    shortcut-items))
+
 
 (defcustom shortcuts-list nil
   "List of shortcuts."
@@ -172,12 +174,22 @@ See `parse-link' for the format of PARSED-LINK."
           (list
            (string
             :tag "Command Name")
-           (repeat (string :tag "URL"))))
+           (radio (list :tag "URL shortcuts"
+                        (radio (function-item browse-url)
+                               (function-item browse-chrome-url)
+                               (function-item browse-url-emacs))
+                        (repeat :tag "List of URLs"
+                                (string :tag "URL")))
+                  (list :tag "File shortcuts"
+                        (radio (function-item find-file)
+                               (function-item find-file-literally))
+                        (repeat :tag "List of filenames"
+                                (string :tag "Path")))
+                  )))
   :group 'shortcuts
   :set (lambda (s v)
          (set-default-toplevel-value s v)
          (load-shortcuts v)))
-
 
 (load-shortcuts shortcuts-list)
 
