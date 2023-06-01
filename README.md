@@ -5,11 +5,11 @@ The `Shortcuts` module allows you to define commands in Emacs to quickly access 
 ## Use cases
 
   * Opening one or multiple distinct URLs with a single command
-    * Opening a single URL is the equivalent of a browser bookmark
-  * Opening one or multiple web-pages from a single [parameterized URL](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL#parameters)
-    * The URL is completed by prompting the user for the missing parameters
+    * _Opening a single URL is the equivalent of a browser bookmark_
+  * Opening one or multiple web-pages from a single parameterized URL
+    * _The URL is completed by prompting the user for the missing parameters_
   * Copying the URL(s) produced by the above commands (instead of opening)
-    * Used for example when sharing the URL(s) in an email or document
+    * _Used for example when sharing the URL(s) in an email or document_
 
 The use cases above are also applicable when opening files instead of URLs.
 
@@ -17,8 +17,8 @@ The use cases above are also applicable when opening files instead of URLs.
 
   * Allows for browser agnostic bookmarks
   * Version controlled:
-    * Shortcuts definitions are stored in the Emacs customization file, which can be version controlled.
-  * Accessible from different systems (when the Emacs configuration is the same across these systems).
+    * Shortcuts definitions are stored in the Emacs customization file, which can be version controlled
+  * Accessible from different systems (when the Emacs configuration is the same across these systems)
   * Allows browsing multiple URLs with a single command
 
 ## Example
@@ -53,21 +53,21 @@ Specifically, it defines an interactive command that:
 [^1]: Entering these special characters can be done in Emacs with the command **C-x 8 C-m**, followed by "KEY" or "ROBOT FACE".
 
 
-# Shortcut Options
+## Shortcut Options
 
-## Command Name
+### Command Name
 
 While the command name can be any string (see [Symbol Type](https://www.gnu.org/software/emacs/manual/html_node/elisp/Symbol-Type.html)), it is normally easier to choose a consistent pattern. For example, lowercase and dash separated words follows the style of many existing commands in Emacs.
 
-## Type of Shortcut
+### Type of Shortcut
 
 Shortcuts are categorized into two types: URL shortcuts and File shortcuts. These are used simply to group the available functions (actions) to take on a shortcut. For example, a find-file function is respondible for opening a file. Hence, this function is group with the "File shortcuts" list.
 
-## Functions
+### Functions
 
 Functions determine the behavior to apply on a path or URL. For example, the function to open a URL in an external browser is `browse-url`. Other functions can be used here depending on what packages are installed in Emacs.
 
-# Specifying parameters in URLs and file paths
+### Specifying parameters in URLs and file paths
 
 A URL or a file path can include any number of parameters in any position.
 
@@ -84,7 +84,7 @@ A parameter must be surrounded with one of two unique characters not generally p
 
 Between these characters, any text can be entered. This text is used when prompting the user to enter the replacement text at the position where this parameter figures in the URL or file path.
 
-## Lisp expressions as parameters
+### Lisp expressions as parameters
 
 Lisp expressions are evaluated to produce a range of values, each mapping to a unique URL.
 
