@@ -1,6 +1,6 @@
 # Customizable URL & file shortcuts in Emacs
 
-The `Shortcuts` module allows you to define commands in Emacs to quickly access webpages or files.
+The `Shortcuts` module allows you to define commands in Emacs to quickly access webpages and files.
 
 ## Use cases
 
@@ -23,7 +23,7 @@ Let's say you would like to navigate to the Wikipedia article about Emacs.
 * Under `Shorcuts List`, hit `INS` to add a new shortcut.
 * Under `Command Name`, type `wikipedia`.
 * Select `URL Shortcuts`, then `browse-url` as the function to execute.
-* Under `List of URLs`, hit `INS`, then type:
+* Under `List of URLs`, hit `INS`, then type (including the key characters[^1]):
   * https://en.wikipedia.org/wiki/🔑Article🔑
 * Finally, press **C-x C-s** to save.
 
@@ -41,3 +41,5 @@ Specifically, it defines an interactive command that:
 * calls the chosen function with this URL.
 
 </details>
+
+[^1]: Entering these special characters can be done in Emacs with the command **C-x 8 C-m**, followed by the work "KEY" or "ROBOT FACE"
