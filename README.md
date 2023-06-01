@@ -1,17 +1,25 @@
-# Customizable URL & file shortcuts in Emacs
+#  Browser shortcuts in Emacs
 
-The `Shortcuts` module allows you to define commands in Emacs to quickly access webpages and files.
+The `Shortcuts` module allows you to define commands in Emacs to quickly access web-pages and files.
 
 ## Use cases
 
   * Opening one or multiple distinct URLs with a single command
     * Opening a single URL is the equivalent of a browser bookmark
-  * Opening one or multiple webpages from a single [parametrized URL](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL#parameters)
+  * Opening one or multiple web-pages from a single [parameterized URL](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL#parameters)
     * The URL is completed by prompting the user for the missing parameters
   * Copying the URL(s) produced by the above commands (instead of opening)
     * Used for example when sharing the URL(s) in an email or document
 
 The use cases above are also applicable when opening files instead of URLs.
+
+## Advantages over browser bookmarks
+
+  * Allows for browser agnostic bookmarks
+  * Version controlled:
+    * Shortcuts definitions are stored in the Emacs customization file, which can be version controlled.
+  * Accessible from different systems (when the Emacs configuration is the same across these systems).
+  * Allows browsing multiple URLs with a single command
 
 ## Example
 
@@ -20,7 +28,7 @@ Let's say you would like to navigate to the Wikipedia article about Emacs.
 * Place the `shortcuts.el` in your load path.
 * **M-x customize-option**
 * Type `shortcuts-list`.
-* Under `Shorcuts List`, hit `INS` to add a new shortcut.
+* Under `Shortcuts List`, hit `INS` to add a new shortcut.
 * Under `Command Name`, type `wikipedia`.
 * Select `URL Shortcuts`, then `browse-url` as the function to execute.
 * Under `List of URLs`, hit `INS`, then type (including the key characters[^1]):
