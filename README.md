@@ -24,14 +24,14 @@ Let's say you would like to navigate to the Wikipedia article about Emacs.
 * Under `Command Name`, type `wikipedia`.
 * Select `URL Shortcuts`, then `browse-url` as the function to execute.
 * Under `List of URLs`, hit `INS`, then type (including the key characters[^1]):
-  * https://en.wikipedia.org/wiki/🔑Article🔑
+  * `https://en.wikipedia.org/wiki/🔑Article🔑`
 * Finally, press **C-x C-s** to save.
 
-**M-x wikipedia** will prompt you for an article and will open it in the browser.
+Now, **M-x wikipedia** will prompt you for an article and will open it in the browser.
 
 
 <details>
-<summary> *How this works* </summary>
+ <summary> <i>How this works</i> </summary>
 
 When the customize option is saved, the `Shortcuts` code sets the command name `wikipedia` as an _interactive command_ that can be called by the user with `M-x`.
 
