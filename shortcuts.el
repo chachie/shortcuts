@@ -136,7 +136,7 @@ See `parse-link' for the format of PARSED-LINK."
   (interactive)
   (mapc
    (lambda (v)
-     (let* ((name (intern (car v)))
+     (let* ((name (intern (format "%s-<shortcut>" (car v))))
             (function (caadr v))
             (parsed-links (mapcar 'parse-link (cadadr v)))
             (interactive-args (string-trim
