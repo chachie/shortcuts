@@ -31,7 +31,7 @@ Let's say you would like to navigate to the Wikipedia article about Emacs.
 
 
 <details>
-<summary>*How this works*</summary>
+<summary> *How this works* </summary>
 
 When the customize option is saved, the `Shortcuts` code sets the command name `wikipedia` as an _interactive command_ that can be called by the user with `M-x`.
 
@@ -42,4 +42,4 @@ Specifically, it defines an interactive command that:
 
 </details>
 
-[^1]: Entering these special characters can be done in Emacs with the command **C-x 8 C-m**, followed by the work "KEY" or "ROBOT FACE"
+[^1]: Entering these special characters can be done in Emacs with the command **C-x 8 C-m**, followed by "KEY" or "ROBOT FACE".
