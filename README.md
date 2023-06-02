@@ -91,7 +91,9 @@ Lisp expressions should produce a flat list of strings. Each string is used to c
 
 #### Example
 
-In the Wikipedia example from above, the URL could use a Lisp expression for the parameter: `https://en.wikipedia.org/wiki/🤖Article🤖`.
+In the Wikipedia example from above, the URL could use a Lisp expression for the parameter: 
+
+```https://en.wikipedia.org/wiki/🤖Article🤖```.
 
 Now, **M-x wikipedia** will prompt you for a Lisp expression. Providing for example `(list "earth" "wind" "fire")` will result in three browser tabs opened for each of "earth", "wind" and "fire".
 
@@ -101,5 +103,5 @@ For example, specifying $M$ pull requests for $N$ repositories on github will re
   * `https://github.com/🔑Org🔑/🤖Repository🤖/pull/🤖Pull Request Number🤖`
   * Example user inputs are:
     * Org: `github`
-    * Repository: ``("copilot-docs" "fetch")`
+    * Repository: `'("copilot-docs" "fetch")`
     * Pull Request Number: `(number-sequence 1 3)`
