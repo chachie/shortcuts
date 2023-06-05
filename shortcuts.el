@@ -181,8 +181,7 @@ See `parse-link' for the format of PARSED-LINK."
             :tag "Command Name")
            (radio (list :tag "URL shortcuts"
                         (radio (function-item browse-url)
-                               (function-item browse-chrome-url)
-                               (function-item browse-url-emacs))
+                               (function-item browse-url-default-browser))
                         (repeat :tag "List of URLs"
                                 (string :tag "URL")))
                   (list :tag "File shortcuts"
