@@ -95,7 +95,7 @@ In the Wikipedia example from above, the URL could use a Lisp expression for the
 
 ```https://en.wikipedia.org/wiki/🤖Article🤖```.
 
-Now, **M-x wikipedia** will prompt you for a Lisp expression. Here you can provide a list of values, e.g. `(list "word1" "word2")` or a more complicated expression like ``(split-string (buffer-substring (region-beginning) (region-end)))` to get the list of words in the current region. This will result in browser tabs opened for each entry in the list.
+Now, **M-x wikipedia** will prompt you for a Lisp expression. Here you can provide a list of values, e.g. `(list "word1" "word2")` or a more complicated expression like `(split-string (buffer-substring (region-beginning) (region-end)))` to get the list of words in the current region. This will result in browser tabs opened for each entry in the list.
 
 Note that when a URL includes multiple Lisp parameters, there will be as many URLs opened as there are combinations of values produced by these parameters.
 
