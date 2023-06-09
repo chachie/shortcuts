@@ -60,11 +60,11 @@ While the command name can be any string (see [Symbol Type](https://www.gnu.org/
 
 ### Type of Shortcut
 
-Shortcuts are categorized into two types: URL shortcuts and File shortcuts. These two categories are used simply to group the available functions to apply on a shortcut. For example, a find-file function is responsible for opening a file. Hence, this function belongs to the "File shortcuts" list.
+Shortcuts are categorized into two types: URL shortcuts and File shortcuts. These two categories are used simply to group a few suggested functions to apply on a shortcut. For example, a find-file function is responsible for opening a file. Hence, this function belongs to the "File shortcuts" list.
 
 ### Functions
 
-Functions determine the action to apply on a path or a URL. These functions are defined by Emacs and are generally ones that can be called interactively. The `Shortcuts` module currently limits the set of functions to a few that address the basic use cases listed above. For example, the function to open a URL in a browser is `browse-url`.
+Functions determine the action to apply on a path or a URL. These functions are defined in Emacs and are generally ones that can be called interactively. The `Shortcuts` module suggests a few common functions to pick, but picking any other function is possible by choosing `Function` and entering the name of the function in the input widget.
 
 ### Specifying parameters in URLs and file paths
 
@@ -95,7 +95,7 @@ In the Wikipedia example from above, the URL could use a Lisp expression for the
 
 ```https://en.wikipedia.org/wiki/🤖Article🤖```.
 
-Now, **M-x wikipedia** will prompt you for a Lisp expression. Providing for example `(list "earth" "wind" "fire")` will result in three browser tabs opened for each of "earth", "wind" and "fire".
+Now, **M-x wikipedia** will prompt you for a Lisp expression. Here you can provide a list of values, e.g. `(list "word1" "word2")` or a more complicated expression like ``(split-string (buffer-substring (region-beginning) (region-end)))` to get the list of words in the current region. This will result in browser tabs opened for each entry in the list.
 
 Note that when a URL includes multiple Lisp parameters, there will be as many URLs opened as there are combinations of values produced by these parameters.
 

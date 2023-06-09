@@ -179,17 +179,19 @@ See `parse-link' for the format of PARSED-LINK."
           (list
            (string
             :tag "Command Name")
-           (radio (list :tag "URL shortcuts"
-                        (radio (function-item browse-url)
-                               (function-item browse-url-default-browser))
-                        (repeat :tag "List of URLs"
-                                (string :tag "URL")))
-                  (list :tag "File shortcuts"
-                        (radio (function-item find-file)
-                               (function-item find-file-literally))
-                        (repeat :tag "List of filenames"
-                                (string :tag "Path")))
-                  )))
+           (choice (list :tag "URL shortcuts"
+                         (choice (function-item browse-url)
+                                 (function-item browse-url-default-browser)
+                                 function)
+                         (repeat :tag "List of URLs"
+                                 (string :tag "URL")))
+                   (list :tag "File shortcuts"
+                         (choice (function-item find-file)
+                                 (function-item find-file-literally)
+                                 function)
+                         (repeat :tag "List of filenames"
+                                 (string :tag "Path")))
+                   )))
   :group 'shortcuts
   :set (lambda (s v)
          (set-default-toplevel-value s v)
