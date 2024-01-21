@@ -24,7 +24,7 @@ determine the replacement string(s)."
 (defun parse-link (link)
   "Return a parsed LINK for use in `load-shortcuts' function.
 
-The list contains the pair (STATIC-PART QUERYABLE-PART) or (STATIC-PART)
+The list contains lists of (STATIC-PART QUERYABLE-PART) or (STATIC-PART)
 when there is no QUERYABLE-PART (such as leftover text at the end of the
 string).
 
@@ -119,13 +119,14 @@ See `parse-link' for the format of PARSED-LINK."
                           (reverse          ; needed for joining the strings
                            ;; there are as many selection elements as there are
                            ;; PARSED-LINKS, except when it ends with (STATIC)
-                           (cl-mapcan (lambda (v1 v2)
-                                        (list (format "%s" v1)
-                                              (format "%s" v2)))
-                                      selection
-                                      (mapcar #'car (if tail-fragment
-                                                        (cdr parsed-link)
-                                                      parsed-link)))))))
+                           (apply 'cl-concatenate 'list
+                                  (cl-mapcar (lambda (v1 v2)
+                                               (list (format "%s" v1)
+                                                     (format "%s" v2)))
+                                             selection
+                                             (mapcar #'car (if tail-fragment
+                                                               (cdr parsed-link)
+                                                             parsed-link))))))))
                     ;; add the remaining (STATIC) text if it exists
                     (string-join (list joined-link tail-fragment))))
                 selections)
@@ -155,15 +156,16 @@ See `parse-link' for the format of PARSED-LINK."
        (fset name `(lambda (p &rest args)
                      (interactive ,(string-join (list "p\n" interactive-args)))
                      (let* ((populated-links
-                             (cl-mapcan (lambda (parsed-link range)
-                                          (build-link parsed-link
-                                                      (mapcar (lambda (arg)
-                                                                (if (listp arg) arg
-                                                                  (list arg)))
-                                                              args)
-                                                      range))
-                                        (quote ,parsed-links)
-                                        (quote ,interactive-args-ranges))))
+                             (apply 'cl-concatenate 'list
+                                    (cl-mapcar (lambda (parsed-link range)
+                                                 (build-link parsed-link
+                                                             (mapcar (lambda (arg)
+                                                                       (if (listp arg) arg
+                                                                         (list arg)))
+                                                                     args)
+                                                             range))
+                                               (quote ,parsed-links)
+                                               (quote ,interactive-args-ranges)))))
                        (if (= p 4)
                            (let ((links (string-join populated-links "\n")))
                              (kill-new links)
